@@ -1,13 +1,51 @@
-cabal-version:       >=1.10
-build-type:          Simple
-name:                cp-to-cpp-transpiler
-version:             0.1.0.0
-author:              Aarav-g123
-license:             BSD3
-main-is:             Main.hs
-exposed-modules:     
-    Parser
-    Transpiler
-dependencies:        base >=4.7 && <5
-                     , hspec (for testing)
-                     , containers
+cabal-version: 2.4
+name:           transpiler
+version:       0.1.0.0
+synopsis:      CP Language - A Python-like language for competitive programming
+description:    Transpiles . cp files to optimized C++ for competitive programming
+license:       MIT
+license-file:  LICENSE
+author:        Aarav
+build-type:    Simple
+
+library
+  exposed-modules:
+    Lib
+    Language.AST
+    Language.Lexer
+    Language.Parser
+    Language.Transpiler
+    Language.Builtins
+  build-depends:
+    base >=4.14 && <5,
+    containers >=0.6,
+    mtl >=2.2,
+    text >=1.2,
+    megaparsec >=9.0,
+    parser-combinators >=1.3
+  hs-source-dirs:   src
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable cp-to-cpp
+  main-is:          Main.hs
+  build-depends: 
+    base >=4.14 && <5,
+    transpiler,
+    text >=1.2,
+    directory >=1.3,
+    filepath >=1.4
+  hs-source-dirs:   app
+  default-language:  Haskell2010
+  ghc-options:      -Wall
+
+test-suite transpiler-test
+  type:              exitcode-stdio-1.0
+  main-is:          Spec.hs
+  build-depends: 
+    base >=4.14 && <5,
+    transpiler,
+    hspec >=2.7,
+    text >=1.2
+  hs-source-dirs:   test
+  default-language: Haskell2010
