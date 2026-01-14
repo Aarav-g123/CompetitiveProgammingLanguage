@@ -1,1 +1,1 @@
-fun main() { return 0; }
+print("Hello, World!")

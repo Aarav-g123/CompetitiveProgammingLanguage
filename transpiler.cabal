@@ -1,0 +1,13 @@
+cabal-version:       >=1.10
+build-type:          Simple
+name:                cp-to-cpp-transpiler
+version:             0.1.0.0
+author:              Aarav-g123
+license:             BSD3
+main-is:             Main.hs
+exposed-modules:     
+    Parser
+    Transpiler
+dependencies:        base >=4.7 && <5
+                     , hspec (for testing)
+                     , containers

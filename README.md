@@ -1,28 +1,34 @@
-# CompetitiveProgammingLanguage
+# cp-to-cpp-transpiler
 
-A minimal cp-lang -> C toy pipeline. Currently only accepts the snippet:
+### Compiling `.cp` files to `.cpp`
 
-```cp
-fun main() { return 0; }
-```
+This is an MVP implementation for transpiling `.cp` files into `.cpp`. The `.cp` language syntax is Python-like while the generated output is optimized for competitive programming in C++.
 
-## Build
+---
 
-```bash
-cabal build
-```
+### Features:
+1. Minimalistic parser (Python-like syntax),
+2. Transpiler generates `#include`, `iostream` headers for competitive programming,
+3. Modular structure for extensions (standard-library optimizations).
 
-## Run
+### How to Run
 
-```bash
-cabal run cp-lang -- -i test.cp -o out.c
-cat out.c
-```
+1. **Using Stack:**
+    ```bash
+    stack build
+    stack exec cp-to-cpp sample.cp output.cpp
+    ```
+2. **Sample Code (`cp`):**
+    ```python
+    print("Hello, World!")
+    ```
+3. **Generated Code (`cpp`):**
+    ```cpp
+    #include <iostream>
+    using namespace std;
 
-`test.cp` already contains the supported program. The compiler will write `out.c` and print the output 
-path. 
+    // Transpiled line: print("Hello, World!")
+    ```
 
-## TODO
-- Extend lexer/parser/typechecker beyond the single hardcoded program
-- Flesh out runtime and safety checks
-- Add real tests/CI once the language surface grows
+### Extend Functionality
+- Implement advanced parsing (`src/Parser.hs`)
